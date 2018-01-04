@@ -1,8 +1,8 @@
 # AnonymousActiveRecord
 
-The gem was inspired by, the [Wolverine project](https://github.com/mcary/wolverine), which [implemented a clever workaround](https://github.com/mcary/wolverine/commit/fa27fa2cc485b2fa83d71b2045ba5a0a069dba75) to the official non-support of [anonymous classes by ActiveRecord](https://github.com/rails/rails/issues/8934).
+This library was 🎩 inspired by 🎩, the [Wolverine project](https://github.com/mcary/wolverine), which [implemented a clever workaround](https://github.com/mcary/wolverine/commit/fa27fa2cc485b2fa83d71b2045ba5a0a069dba75) to the official non-support of [anonymous classes by ActiveRecord](https://github.com/rails/rails/issues/8934).
 
-Warning: Use of this gem is a **security risk**.  It is intended for use in a test suite, or other non-critical environment.
+Warning: Use of this gem is a **security risk**, due to the use of Ruby's `eval`.  It is intended for use in a test suite, or other non-critical environment.
 
 ## Installation
 
@@ -22,7 +22,94 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Require the library in your `spec_helper` or other test suite boot file.
+
+```ruby
+require 'anonymous_active_record'
+```
+
+Let's say you want to write specs for a module, `HasBalloon`, which provides a method `has_balloon?`, and will be mixed into ActiveRecord classes.
+
+```ruby
+module HasBalloon
+  def has_balloon?
+    name == 'Spot' ? true : false # only Spot has a balloon
+  end
+end
+```
+
+This won't work [(really!)](https://github.com/rails/rails/issues/8934):
+
+```ruby
+  let(:ar_with_balloon) do
+    Class.new(ActiveRecord::Base) do
+      attr_accessor :name
+      include HasBalloon
+      def flowery_name
+        "#{b_f}#{name}#{b_f}"
+      end
+      def b_f
+        has_balloon? ? '🎈' : '🌸'
+      end
+    end
+  end
+```
+
+So do this instead:
+
+```ruby
+  let(:ar_with_balloon) do
+    AnonymousActiveRecord.generate(columns: ['name']) do
+      include HasBalloon
+      def flowery_name
+        "#{b_f}#{name}#{b_f}"
+      end
+      def b_f
+        has_balloon? ? '🎈' : '🌸'
+      end
+    end
+  end
+  it 'can test the module' do
+    expect(ar_with_balloon.new(name: 'Spot').flowery_name).to eq('🎈Spot🎈')
+    expect(ar_with_balloon.new(name: 'Not Spot').flowery_name).to eq('🌸Not Spot🌸')
+  end
+```
+
+### Generate Options
+
+```ruby
+AnonymousActiveRecord.generate(
+    table_name: 'a_table_name', 
+        # if table_name is not set klass_basename will be used to derive a unique random table_name
+        # default is a unique random table name
+    klass_basename: 'anons', # is default
+    columns: ['name'], 
+        # default is [], 
+        # meaning class will have ['id', 'created_at', 'updated_at'], as the AR defaults
+    timestamps: true, # is default
+    connection_params: { adapter: 'sqlite3', encoding: 'utf8', database: ':memory:' } # is default
+) do
+   # code which becomes part of the class definition
+end
+```
+
+The block is optional.
+
+### Factory Options
+
+```ruby
+AnonymousActiveRecord.factory(
+    source_data: [{name: 'Phil'}, {name: 'Vickie'}],
+        # Array of hashes, where each hash represents a record that will be created
+    # ... The rest of the options are the same as for generate, see above.
+) do
+  # same as for generate, see above.
+end
+```
+
+The block is optional.
+
+There is also a `factory!` method that will raise if the create fails, accomplished by calling `create!` instead of `create`.
 
 ## Development
 

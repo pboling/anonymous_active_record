@@ -152,19 +152,21 @@ RSpec.describe AnonymousActiveRecord do
       let(:columns) { ['name'] }
       let(:timestamps) { false }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
-      subject { described_class.generate(
+      subject {
+        described_class.generate(
           table_name: table_name,
           klass_basename: klass_basename,
           columns: columns,
           timestamps: timestamps,
-          connection_params: connection_params) do
-        def eat_pie
-          'eating'
+          connection_params: connection_params
+        ) do
+          def eat_pie
+            'eating'
+          end
+          def flowery_name
+            "🌸#{name}🌸"
+          end
         end
-        def flowery_name
-          "🌸#{name}🌸"
-        end
-      end
       }
       it 'does not error' do
         expect { subject }.to_not raise_error
@@ -211,6 +213,30 @@ RSpec.describe AnonymousActiveRecord do
         end
       end
     end
+    context 'testing a module' do
+      let!(:has_balloon) do
+        module HasBalloon
+          def has_balloon?
+            name == 'Spot' ? true : false # only Spot has a balloon
+          end
+        end
+      end
+      let(:ar_with_balloon) do
+        described_class.generate(columns: ['name']) do
+          include HasBalloon
+          def flowery_name
+            "#{b_f}#{name}#{b_f}"
+          end
+          def b_f
+            has_balloon? ? '🎈' : '🌸'
+          end
+        end
+      end
+      it 'can test the module' do
+        expect(ar_with_balloon.new(name: 'Spot').flowery_name).to eq('🎈Spot🎈')
+        expect(ar_with_balloon.new(name: 'Not Spot').flowery_name).to eq('🌸Not Spot🌸')
+      end
+    end
   end
 
   describe '.factory' do
@@ -239,14 +265,16 @@ RSpec.describe AnonymousActiveRecord do
       let(:timestamps) { true }
       let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
-      subject { described_class.factory(
+      subject {
+        described_class.factory(
           source_data: source_data,
           table_name: table_name,
           klass_namespaces: klass_namespaces,
           klass_basename: klass_basename,
           columns: columns,
           timestamps: timestamps,
-          connection_params: connection_params)
+          connection_params: connection_params
+        )
       }
       context 'returns array' do
         it 'be an array' do
@@ -270,13 +298,15 @@ RSpec.describe AnonymousActiveRecord do
       let(:timestamps) { false }
       let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
-      subject { described_class.factory(
+      subject {
+        described_class.factory(
           source_data: source_data,
           table_name: table_name,
           klass_basename: klass_basename,
           columns: columns,
           timestamps: timestamps,
-          connection_params: connection_params)
+          connection_params: connection_params
+        )
       }
       context 'returns array' do
         it 'be an array' do
@@ -300,20 +330,22 @@ RSpec.describe AnonymousActiveRecord do
       let(:timestamps) { false }
       let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
-      subject { described_class.factory(
+      subject {
+        described_class.factory(
           source_data: source_data,
           table_name: table_name,
           klass_basename: klass_basename,
           columns: columns,
           timestamps: timestamps,
-          connection_params: connection_params) do
-        def eat_pie
-          'eating'
+          connection_params: connection_params
+        ) do
+          def eat_pie
+            'eating'
+          end
+          def flowery_name
+            "🌸#{name}🌸"
+          end
         end
-        def flowery_name
-          "🌸#{name}🌸"
-        end
-      end
       }
       context 'returns array' do
         it 'be an array' do

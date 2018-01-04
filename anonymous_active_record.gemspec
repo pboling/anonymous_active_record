@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Peter Boling']
   spec.email         = ['peter.boling@gmail.com']
 
-  spec.summary       = 'Support (Faux) Anonymous ActiveRecord classes'
+  spec.summary       = 'Almost Anonymous ActiveRecord classes'
+  spec.description   = 'Replacement for broken Class.new(ActiveRecord::Base)'
   spec.homepage      = 'https://github.com/pboling/anonymous_active_record'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
@@ -18,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
+  spec.license       = 'MIT'
 
   spec.required_ruby_version = '>= 2.4' # Requirement for Ruby String#capitalize
 

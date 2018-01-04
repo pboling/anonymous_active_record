@@ -59,10 +59,22 @@ module AnonymousActiveRecord
 
   # Initializes instances of a pseudo anonymous class in a particular namespace of your choosing.
   def factory(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], timestamps: true, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
-    klass = generate(table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, timestamps: timestamps, connection_params: connection_params, &block)
-    factory = AnonymousActiveRecord::Factory.new(source_data, klass)
+    factory = _factory(source_data: source_data, table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, timestamps: timestamps, connection_params: connection_params, &block)
     factory.run
   end
 
-  module_function :generate, :factory
+  # Initializes instances of a pseudo anonymous class in a particular namespace of your choosing.
+  def factory!(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], timestamps: true, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
+    factory = _factory(source_data: source_data, table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, timestamps: timestamps, connection_params: connection_params, &block)
+    factory.run!
+  end
+
+  private
+
+  def _factory(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], timestamps: true, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
+    klass = generate(table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, timestamps: timestamps, connection_params: connection_params, &block)
+    AnonymousActiveRecord::Factory.new(source_data, klass)
+  end
+
+  module_function :generate, :factory, :factory!, :_factory
 end

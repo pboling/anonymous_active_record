@@ -19,6 +19,12 @@ module AnonymousActiveRecord
 
     def run
       @source_data.map do |hash|
+        klass.create(hash)
+      end
+    end
+
+    def run!
+      @source_data.map do |hash|
         klass.create!(hash)
       end
     end
