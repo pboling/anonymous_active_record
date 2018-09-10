@@ -5,7 +5,7 @@ RSpec.describe AnonymousActiveRecord do
 
   describe '.generate' do
     context 'minimal params' do
-      subject { described_class.generate() }
+      subject { described_class.generate }
       it 'does not error' do
         expect { subject }.to_not raise_error
       end
@@ -40,26 +40,28 @@ RSpec.describe AnonymousActiveRecord do
       end
     end
     context 'all params' do
-      let!(:farm_animal) {
+      let!(:farm_animal) do
         module Farm
           module Animal
           end
         end
-      }
+      end
       let(:table_name) { 'dogs' }
       let(:klass_namespaces) { %w[Farm Animal] }
       let(:klass_basename) { 'my' }
       let(:columns) { ['name'] }
       let(:timestamps) { true }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
-      subject { described_class.generate(
+      subject do
+        described_class.generate(
           table_name: table_name,
           klass_namespaces: klass_namespaces,
           klass_basename: klass_basename,
           columns: columns,
           timestamps: timestamps,
-          connection_params: connection_params)
-      }
+          connection_params: connection_params
+        )
+      end
       it 'does not error' do
         expect { subject }.to_not raise_error
       end
@@ -105,13 +107,15 @@ RSpec.describe AnonymousActiveRecord do
       let(:columns) { ['name'] }
       let(:timestamps) { false }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
-      subject { described_class.generate(
+      subject do
+        described_class.generate(
           table_name: table_name,
           klass_basename: klass_basename,
           columns: columns,
           timestamps: timestamps,
-          connection_params: connection_params)
-      }
+          connection_params: connection_params
+        )
+      end
       it 'does not error' do
         expect { subject }.to_not raise_error
       end
@@ -152,7 +156,7 @@ RSpec.describe AnonymousActiveRecord do
       let(:columns) { ['name'] }
       let(:timestamps) { false }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
-      subject {
+      subject do
         described_class.generate(
           table_name: table_name,
           klass_basename: klass_basename,
@@ -163,11 +167,12 @@ RSpec.describe AnonymousActiveRecord do
           def eat_pie
             'eating'
           end
+
           def flowery_name
             "🌸#{name}🌸"
           end
         end
-      }
+      end
       it 'does not error' do
         expect { subject }.to_not raise_error
       end
@@ -217,7 +222,7 @@ RSpec.describe AnonymousActiveRecord do
       let!(:has_balloon) do
         module HasBalloon
           def has_balloon?
-            name == 'Spot' ? true : false # only Spot has a balloon
+            name == 'Spot' # only Spot has a balloon
           end
         end
       end
@@ -227,6 +232,7 @@ RSpec.describe AnonymousActiveRecord do
           def flowery_name
             "#{b_f}#{name}#{b_f}"
           end
+
           def b_f
             has_balloon? ? '🎈' : '🌸'
           end
@@ -242,7 +248,7 @@ RSpec.describe AnonymousActiveRecord do
   describe '.factory' do
     context 'minimal params' do
       context 'returns array' do
-        subject { described_class.factory() }
+        subject { described_class.factory }
         it 'be an array' do
           is_expected.to be_a(Array)
         end
@@ -252,12 +258,12 @@ RSpec.describe AnonymousActiveRecord do
       end
     end
     context 'all params' do
-      let!(:farm_animal) {
+      let!(:farm_animal) do
         module Zoo
           module Animal
           end
         end
-      }
+      end
       let(:table_name) { 'dogs' }
       let(:klass_namespaces) { %w[Zoo Animal] }
       let(:klass_basename) { 'my' }
@@ -265,7 +271,7 @@ RSpec.describe AnonymousActiveRecord do
       let(:timestamps) { true }
       let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
-      subject {
+      subject do
         described_class.factory(
           source_data: source_data,
           table_name: table_name,
@@ -275,7 +281,7 @@ RSpec.describe AnonymousActiveRecord do
           timestamps: timestamps,
           connection_params: connection_params
         )
-      }
+      end
       context 'returns array' do
         it 'be an array' do
           is_expected.to be_a(Array)
@@ -298,7 +304,7 @@ RSpec.describe AnonymousActiveRecord do
       let(:timestamps) { false }
       let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
-      subject {
+      subject do
         described_class.factory(
           source_data: source_data,
           table_name: table_name,
@@ -307,7 +313,7 @@ RSpec.describe AnonymousActiveRecord do
           timestamps: timestamps,
           connection_params: connection_params
         )
-      }
+      end
       context 'returns array' do
         it 'be an array' do
           is_expected.to be_a(Array)
@@ -330,7 +336,7 @@ RSpec.describe AnonymousActiveRecord do
       let(:timestamps) { false }
       let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
-      subject {
+      subject do
         described_class.factory(
           source_data: source_data,
           table_name: table_name,
@@ -342,11 +348,12 @@ RSpec.describe AnonymousActiveRecord do
           def eat_pie
             'eating'
           end
+
           def flowery_name
             "🌸#{name}🌸"
           end
         end
-      }
+      end
       context 'returns array' do
         it 'be an array' do
           is_expected.to be_a(Array)

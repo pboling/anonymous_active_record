@@ -36,9 +36,9 @@ require 'anonymous_active_record/factory'
 #
 module AnonymousActiveRecord
   DEFAULT_CONNECTION_PARAMS = {
-      adapter: 'sqlite3',
-      encoding: 'utf8',
-      database: ':memory:'
+    adapter: 'sqlite3',
+    encoding: 'utf8',
+    database: ':memory:'
   }.freeze
 
   # Defines a pseudo anonymous class in a particular namespace of your choosing.

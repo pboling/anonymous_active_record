@@ -1,5 +1,4 @@
-
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'anonymous_active_record/version'
 
@@ -24,9 +23,9 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.4' # Requirement for Ruby String#capitalize
 
   spec.add_development_dependency 'bundler', '~> 1'
+  spec.add_development_dependency 'byebug', '~> 10'
   spec.add_development_dependency 'rake', '~> 12'
   spec.add_development_dependency 'rspec', '~> 3'
-  spec.add_development_dependency 'byebug', '~> 10'
   spec.add_development_dependency 'sqlite3', '~> 1'
   spec.add_dependency 'activerecord', '~> 5'
 end
