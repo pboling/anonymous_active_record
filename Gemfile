@@ -9,7 +9,7 @@ group :test do
     gem 'rubocop-rspec', '~> 1.24.0'
   end
   gem 'pry', '~> 0.11' if ruby_version >= Gem::Version.new('2.0')
-  gem 'simplecov', require: false, group: :test
+  gem 'simplecov', require: false
 end
 
 # Specify your gem's dependencies in anonymous_active_record.gemspec
