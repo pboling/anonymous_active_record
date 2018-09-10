@@ -1,6 +1,6 @@
 require 'bundler/setup'
 
-require 'byebug'
+require 'byebug' if RbConfig::CONFIG['RUBY_INSTALL_NAME'] == 'ruby'
 
 require 'simplecov'
 SimpleCov.start

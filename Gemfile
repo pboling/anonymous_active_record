@@ -8,7 +8,11 @@ group :test do
     gem 'rubocop', '~> 0.59.0'
     gem 'rubocop-rspec', '~> 1.24.0'
   end
-  gem 'pry', '~> 0.11' if ruby_version >= Gem::Version.new('2.0')
+  if ruby_version >= Gem::Version.new('2.0')
+    gem 'byebug', '~> 9.0', platform: :mri, require: false
+    gem 'pry', '~> 0.11', platform: :mri, require: false
+    gem 'pry-byebug', '~> 0.11', platform: :mri, require: false
+  end
   gem 'simplecov', require: false
 end
 
