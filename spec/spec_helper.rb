@@ -2,6 +2,9 @@ require 'bundler/setup'
 
 require 'byebug'
 
+require 'simplecov'
+SimpleCov.start
+
 require 'anonymous_active_record'
 
 RSpec.configure do |config|
