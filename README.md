@@ -10,7 +10,7 @@ Warning: Use of this gem is a **security risk**, due to the use of Ruby's `eval`
 | license                 |  [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) |
 | download rank           |  [![Downloads Today](https://img.shields.io/gem/rd/anonymous_active_record.svg)](https://github.com/pboling/anonymous_active_record) |
 | version                 |  [![Version](https://img.shields.io/gem/v/anonymous_active_record.svg)](https://rubygems.org/gems/anonymous_active_record) |
-| dependencies            |  [![Depfu](https://badges.depfu.com/badges/a34c123a78a86496bbc2163b801089dd/count.svg)](https://depfu.com/github/pboling/activerecord-tablefree?project_id=5613) |
+| dependencies            |  [![Depfu](https://badges.depfu.com/badges/272ce0df3bc6df5cbea9354e2c3b65af/count.svg)](https://depfu.com/github/pboling/anonymous_active_record?project_id=5614) |
 | continuous integration  |  [![Build Status](https://travis-ci.org/pboling/anonymous_active_record.svg?branch=master)](https://travis-ci.org/pboling/anonymous_active_record) |
 | test coverage           |  [![Test Coverage](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/test_coverage)](https://codeclimate.com/github/pboling/anonymous_active_record/test_coverage) |
 | maintainability         |  [![Maintainability](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/maintainability)](https://codeclimate.com/github/pboling/anonymous_active_record/maintainability) |
@@ -172,5 +172,5 @@ spec.add_dependency 'anonymous_active_record', '~> 0.0'
 [pvc]: http://guides.rubygems.org/patterns/#pessimistic-version-constraint
 [railsbling]: http://www.railsbling.com
 [peterboling]: http://www.peterboling.com
-[documentation]: http://rdoc.info/github/pboling/activerecord-tablefree/frames
-[homepage]: http://www.railsbling.com/tags/activerecord-tablefree/
+[documentation]: http://rdoc.info/github/pboling/anonymous_active_record/frames
+[homepage]: http://www.railsbling.com/tags/anonymous_active_record/
