@@ -50,7 +50,11 @@ module AnonymousActiveRecord
     klass.connection.create_table gen.table_name do |t|
       t.column :text, :text
       columns.each do |col|
-        t.column col, :string
+        if col.is_a?(Hash)
+          t.column col[:name], col[:type]
+        else
+          t.column col, :string
+        end
       end
       t.timestamps if timestamps
     end

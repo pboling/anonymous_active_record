@@ -102,6 +102,8 @@ AnonymousActiveRecord.generate(
     columns: ['name'], 
         # default is [], 
         # meaning class will have ['id', 'created_at', 'updated_at'], as the AR defaults
+        # Optionally provide an array of hashes and thereby designate column type:
+        # [{name: 'name', type: 'string'}, {name: 'baked_at', type: 'time'}]
     timestamps: true, # is default
     connection_params: { adapter: 'sqlite3', encoding: 'utf8', database: ':memory:' } # is default
 ) do
