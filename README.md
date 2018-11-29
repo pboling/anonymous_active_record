@@ -100,11 +100,16 @@ AnonymousActiveRecord.generate(
         # default is a unique random table name
     klass_basename: 'anons', # is default
     columns: ['name'], 
-        # default is [], 
+        # columns default is [], 
         # meaning class will have ['id', 'created_at', 'updated_at'], as the AR defaults
         # Optionally provide an array of hashes and thereby designate column type:
         # [{name: 'name', type: 'string'}, {name: 'baked_at', type: 'time'}]
     timestamps: true, # is default
+    indexes: [{columns: ['name'], unique: true}],
+        # indexes default is [], 
+        # meaning class will have no indexes, as the AR defaults
+        # Optionally provide an array of hashes of index options (similar to those used in Rails migrations):
+        # [{columns: ['name'], unique: true}, {columns: ['baked_at']}]
     connection_params: { adapter: 'sqlite3', encoding: 'utf8', database: ':memory:' } # is default
 ) do
    # code which becomes part of the class definition

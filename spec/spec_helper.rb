@@ -2,6 +2,8 @@ require 'bundler/setup'
 
 require 'byebug' if RbConfig::CONFIG['RUBY_INSTALL_NAME'] == 'ruby'
 
+require 'rspec/block_is_expected'
+
 require 'simplecov'
 SimpleCov.start
 

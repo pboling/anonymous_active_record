@@ -42,7 +42,7 @@ module AnonymousActiveRecord
   }.freeze
 
   # Defines a pseudo anonymous class in a particular namespace of your choosing.
-  def generate(table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], timestamps: true, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
+  def generate(table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
     gen = AnonymousActiveRecord::Generator.new(table_name, klass_namespaces, klass_basename)
     klass = gen.generate(&block)
     connection_params = YAML.load_file(connection_params) if connection_params.is_a?(String)
@@ -56,27 +56,31 @@ module AnonymousActiveRecord
           t.column col, :string
         end
       end
+      indexes.each do |idx_options|
+        column_names = idx_options.delete(:columns)
+        t.index column_names, **(idx_options)
+      end
       t.timestamps if timestamps
     end
     klass
   end
 
   # Initializes instances of a pseudo anonymous class in a particular namespace of your choosing.
-  def factory(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], timestamps: true, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
-    factory = _factory(source_data: source_data, table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, timestamps: timestamps, connection_params: connection_params, &block)
+  def factory(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
+    factory = _factory(source_data: source_data, table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, indexes: indexes, timestamps: timestamps, connection_params: connection_params, &block)
     factory.run
   end
 
   # Initializes instances of a pseudo anonymous class in a particular namespace of your choosing.
-  def factory!(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], timestamps: true, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
-    factory = _factory(source_data: source_data, table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, timestamps: timestamps, connection_params: connection_params, &block)
+  def factory!(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
+    factory = _factory(source_data: source_data, table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, indexes: indexes, timestamps: timestamps, connection_params: connection_params, &block)
     factory.run!
   end
 
   private
 
-  def _factory(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], timestamps: true, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
-    klass = generate(table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, timestamps: timestamps, connection_params: connection_params, &block)
+  def _factory(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
+    klass = generate(table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, timestamps: timestamps, indexes: indexes, connection_params: connection_params, &block)
     AnonymousActiveRecord::Factory.new(source_data, klass)
   end
 
