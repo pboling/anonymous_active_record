@@ -48,7 +48,6 @@ module AnonymousActiveRecord
     connection_params = YAML.load_file(connection_params) if connection_params.is_a?(String)
     klass.establish_connection(connection_params.dup)
     klass.connection.create_table gen.table_name do |t|
-      t.column :text, :text
       columns.each do |col|
         if col.is_a?(Hash)
           t.column col[:name], col[:type]
