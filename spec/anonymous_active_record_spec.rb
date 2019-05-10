@@ -50,7 +50,7 @@ RSpec.describe AnonymousActiveRecord do
       let(:klass_namespaces) { %w[Farm Animal] }
       let(:klass_basename) { 'my' }
       let(:columns) { ['name'] }
-      let(:indexes) { [{columns: ['name']}] }
+      let(:indexes) { [{ columns: ['name'] }] }
       let(:timestamps) { true }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
       subject do
@@ -113,19 +113,19 @@ RSpec.describe AnonymousActiveRecord do
       let(:table_name) { 'dogs' }
       let(:klass_namespaces) { %w[Farm Animal] }
       let(:klass_basename) { 'my' }
-      let(:columns) { [{name: 'name', type: 'string'}, {name: 'baked_at', type: 'time'}] }
+      let(:columns) { [{ name: 'name', type: 'string' }, { name: 'baked_at', type: 'time' }] }
       let(:indexes) { [] }
       let(:timestamps) { true }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
       subject do
         described_class.generate(
-            table_name: table_name,
-            klass_namespaces: klass_namespaces,
-            klass_basename: klass_basename,
-            columns: columns,
-            indexes: indexes,
-            timestamps: timestamps,
-            connection_params: connection_params
+          table_name: table_name,
+          klass_namespaces: klass_namespaces,
+          klass_basename: klass_basename,
+          columns: columns,
+          indexes: indexes,
+          timestamps: timestamps,
+          connection_params: connection_params
         )
       end
       it 'does not error' do
@@ -186,19 +186,19 @@ RSpec.describe AnonymousActiveRecord do
       let(:table_name) { 'dogs' }
       let(:klass_namespaces) { %w[Farm Animal] }
       let(:klass_basename) { 'my' }
-      let(:columns) { [{name: 'name', type: 'string', default: 'Bird Man'}, {name: 'number', type: 'integer', default: 0}] }
+      let(:columns) { [{ name: 'name', type: 'string', default: 'Bird Man' }, { name: 'number', type: 'integer', default: 0 }] }
       let(:indexes) { [] }
       let(:timestamps) { true }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
       subject do
         described_class.generate(
-            table_name: table_name,
-            klass_namespaces: klass_namespaces,
-            klass_basename: klass_basename,
-            columns: columns,
-            indexes: indexes,
-            timestamps: timestamps,
-            connection_params: connection_params
+          table_name: table_name,
+          klass_namespaces: klass_namespaces,
+          klass_basename: klass_basename,
+          columns: columns,
+          indexes: indexes,
+          timestamps: timestamps,
+          connection_params: connection_params
         )
       end
       it 'does not error' do
@@ -259,19 +259,19 @@ RSpec.describe AnonymousActiveRecord do
       let(:table_name) { 'dogs' }
       let(:klass_namespaces) { %w[Farm Animal] }
       let(:klass_basename) { 'my' }
-      let(:columns) { [{name: 'name', type: 'string'}, {name: 'baked_at', type: 'time'}] }
-      let(:indexes) { [{columns: ['name'], unique: true}, {columns: ['baked_at']}]}
+      let(:columns) { [{ name: 'name', type: 'string' }, { name: 'baked_at', type: 'time' }] }
+      let(:indexes) { [{ columns: ['name'], unique: true }, { columns: ['baked_at'] }] }
       let(:timestamps) { true }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
       subject do
         described_class.generate(
-            table_name: table_name,
-            klass_namespaces: klass_namespaces,
-            klass_basename: klass_basename,
-            columns: columns,
-            indexes: indexes,
-            timestamps: timestamps,
-            connection_params: connection_params
+          table_name: table_name,
+          klass_namespaces: klass_namespaces,
+          klass_basename: klass_basename,
+          columns: columns,
+          indexes: indexes,
+          timestamps: timestamps,
+          connection_params: connection_params
         )
       end
       it 'does not error' do
@@ -323,13 +323,13 @@ RSpec.describe AnonymousActiveRecord do
         context 'uniqueness enforced by index' do
           let(:model) do
             described_class.generate(
-                table_name: table_name,
-                klass_namespaces: klass_namespaces,
-                klass_basename: klass_basename,
-                columns: columns,
-                indexes: indexes,
-                timestamps: timestamps,
-                connection_params: connection_params
+              table_name: table_name,
+              klass_namespaces: klass_namespaces,
+              klass_basename: klass_basename,
+              columns: columns,
+              indexes: indexes,
+              timestamps: timestamps,
+              connection_params: connection_params
             )
           end
           before do
@@ -517,7 +517,7 @@ RSpec.describe AnonymousActiveRecord do
       let(:klass_namespaces) { %w[Zoo Animal] }
       let(:klass_basename) { 'my' }
       let(:columns) { ['name'] }
-      let(:indexes) { [{columns: ['name']}] }
+      let(:indexes) { [{ columns: ['name'] }] }
       let(:timestamps) { true }
       let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
@@ -552,7 +552,7 @@ RSpec.describe AnonymousActiveRecord do
       let(:table_name) { 'dogs' }
       let(:klass_basename) { 'my' }
       let(:columns) { ['name'] }
-      let(:indexes) { [{columns: ['name']}] }
+      let(:indexes) { [{ columns: ['name'] }] }
       let(:timestamps) { false }
       let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
@@ -586,7 +586,7 @@ RSpec.describe AnonymousActiveRecord do
       let(:table_name) { 'dogs' }
       let(:klass_basename) { 'my' }
       let(:columns) { ['name'] }
-      let(:indexes) { [{columns: ['name']}] }
+      let(:indexes) { [{ columns: ['name'] }] }
       let(:timestamps) { false }
       let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }

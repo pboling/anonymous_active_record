@@ -60,7 +60,7 @@ module AnonymousActiveRecord
       end
       indexes.each do |idx_options|
         column_names = idx_options.delete(:columns)
-        t.index column_names, **(idx_options)
+        t.index column_names, **idx_options
       end
       t.timestamps if timestamps
     end
