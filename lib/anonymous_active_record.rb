@@ -50,7 +50,10 @@ module AnonymousActiveRecord
     klass.connection.create_table gen.table_name do |t|
       columns.each do |col|
         if col.is_a?(Hash)
-          t.column col[:name], col[:type]
+          # :name and :type are required at minimum
+          name = col.delete(:name)
+          type = col.delete(:type)
+          t.column(name, type, **col)
         else
           t.column col, :string
         end
