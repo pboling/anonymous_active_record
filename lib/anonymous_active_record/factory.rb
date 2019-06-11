@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Usage:
 #
 #     records = AnonymousActiveRecord.factory(source_data: [{name: 'Bob McGurdy'}], columns: ['name']) do

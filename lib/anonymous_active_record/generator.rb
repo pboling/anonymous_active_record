@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Usage:
 #
 #     klass = AnonymousActiveRecord.generate(columns: ['name']) do
@@ -12,7 +14,7 @@
 module AnonymousActiveRecord
   # Generator defines a pseudo anonymous class in a particular namespace of your choosing.
   class Generator
-    DEFAULT_NAME = 'anons'.freeze
+    DEFAULT_NAME = 'anons'
 
     attr_reader :klass_namespaces, :table_name, :klass_name
 

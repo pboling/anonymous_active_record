@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bundler/setup'
 
 require 'byebug' if RbConfig::CONFIG['RUBY_INSTALL_NAME'] == 'ruby'
