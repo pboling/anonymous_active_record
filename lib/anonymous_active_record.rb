@@ -53,7 +53,11 @@ module AnonymousActiveRecord
           # :name and :type are required at minimum
           name = col.delete(:name)
           type = col.delete(:type)
-          t.column(name, type, **col)
+          if col.empty?
+            t.column(name, type)
+          else
+            t.column(name, type, **col)
+          end
         else
           t.column col, :string
         end

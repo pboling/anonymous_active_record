@@ -631,4 +631,142 @@ RSpec.describe AnonymousActiveRecord do
       end
     end
   end
+
+  describe '.factory!' do
+    context 'minimal params' do
+      context 'returns array' do
+        subject { described_class.factory! }
+        it 'be an array' do
+          is_expected.to be_a(Array)
+        end
+        it 'has length 0' do
+          expect(subject.length).to eq(0)
+        end
+      end
+    end
+    context 'all params' do
+      let!(:farm_animal) do
+        module Zoo
+          module Animal
+          end
+        end
+      end
+      let(:table_name) { 'dogs' }
+      let(:klass_namespaces) { %w[Zoo Animal] }
+      let(:klass_basename) { 'my' }
+      let(:columns) { ['name'] }
+      let(:indexes) { [{ columns: ['name'] }] }
+      let(:timestamps) { true }
+      let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
+      let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
+      subject do
+        described_class.factory!(
+            source_data: source_data,
+            table_name: table_name,
+            klass_namespaces: klass_namespaces,
+            klass_basename: klass_basename,
+            columns: columns,
+            indexes: indexes,
+            timestamps: timestamps,
+            connection_params: connection_params
+        )
+      end
+      context 'returns array' do
+        it 'be an array' do
+          is_expected.to be_a(Array)
+        end
+        it 'has length 2' do
+          expect(subject.length).to eq(2)
+        end
+      end
+      context 'sets attributes' do
+        subject { super().map(&:name) }
+        it 'be an array' do
+          is_expected.to eq(['Gru Banksy', 'Herlina Termalina'])
+        end
+      end
+    end
+    context 'no timestamps' do
+      let(:table_name) { 'dogs' }
+      let(:klass_basename) { 'my' }
+      let(:columns) { ['name'] }
+      let(:indexes) { [{ columns: ['name'] }] }
+      let(:timestamps) { false }
+      let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
+      let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
+      subject do
+        described_class.factory!(
+            source_data: source_data,
+            table_name: table_name,
+            klass_basename: klass_basename,
+            columns: columns,
+            indexes: indexes,
+            timestamps: timestamps,
+            connection_params: connection_params
+        )
+      end
+      context 'returns array' do
+        it 'be an array' do
+          is_expected.to be_a(Array)
+        end
+        it 'has length 2' do
+          expect(subject.length).to eq(2)
+        end
+      end
+      context 'does not have timestamps' do
+        subject { super().map { |anon| anon.respond_to?(:created_at) } }
+        it 'be an array' do
+          is_expected.to eq([false, false])
+        end
+      end
+    end
+    context 'with block' do
+      let(:table_name) { 'dogs' }
+      let(:klass_basename) { 'my' }
+      let(:columns) { ['name'] }
+      let(:indexes) { [{ columns: ['name'] }] }
+      let(:timestamps) { false }
+      let(:source_data) { [{ name: 'Gru Banksy' }, { name: 'Herlina Termalina' }] }
+      let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
+      subject do
+        described_class.factory!(
+            source_data: source_data,
+            table_name: table_name,
+            klass_basename: klass_basename,
+            columns: columns,
+            indexes: indexes,
+            timestamps: timestamps,
+            connection_params: connection_params
+        ) do
+          def eat_pie
+            'eating'
+          end
+
+          def flowery_name
+            "🌸#{name}🌸"
+          end
+        end
+      end
+      context 'returns array' do
+        it 'be an array' do
+          is_expected.to be_a(Array)
+        end
+        it 'has length 2' do
+          expect(subject.length).to eq(2)
+        end
+      end
+      context 'defines method' do
+        subject { super().map(&:eat_pie) }
+        it 'defines method' do
+          expect(subject).to eq(%w[eating eating])
+        end
+      end
+      context 'sets attributes' do
+        subject { super().map(&:flowery_name) }
+        it 'be an array' do
+          is_expected.to eq(['🌸Gru Banksy🌸', '🌸Herlina Termalina🌸'])
+        end
+      end
+    end
+  end
 end
