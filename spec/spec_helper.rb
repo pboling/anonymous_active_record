@@ -2,12 +2,12 @@
 
 require 'bundler/setup'
 
-require 'byebug' if RbConfig::CONFIG['RUBY_INSTALL_NAME'] == 'ruby'
+require 'byebug' if RUBY_ENGINE == 'ruby'
 
 require 'rspec/block_is_expected'
 
-require 'simplecov'
-SimpleCov.start
+ruby_version = Gem::Version.new(RUBY_VERSION)
+require 'simplecov' if ruby_version >= Gem::Version.new('2.7') && RUBY_ENGINE == 'ruby'
 
 require 'anonymous_active_record'
 
