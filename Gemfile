@@ -28,17 +28,6 @@ group :development, :test do
 end
 
 group :test do
-  # No need to run rubocop or simplecov on earlier versions
-  if ruby_version >= Gem::Version.new('2.7')
-    gem 'rubocop', '~> 1.9', :platform => :mri
-    gem 'rubocop-md', :platform => :mri
-    gem 'rubocop-minitest', :platform => :mri
-    gem 'rubocop-packaging', :platform => :mri
-    gem 'rubocop-rake', :platform => :mri
-    gem 'rubocop-rspec', :platform => :mri
-    gem 'simplecov', :platform => :mri
-  end
-
   gem 'test-unit', '>= 3.0'
 end
 
