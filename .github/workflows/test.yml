@@ -21,21 +21,19 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
-          # This gem is not yet compatible with Ruby 3, ruby-head or jruby-head,
-          #   and Github actions to not support an `allow_failures` feature like Travis-CI
-          # - ruby-head
-          # - 3.0.0
+          - ruby-head
+          - 3.0.0
           - 2.7
           - 2.6
           - 2.5
           - 2.4
-        # include:
-          # - ruby: jruby-9.2.13.0
-          #   env:
-          #     JRUBY_OPTS: "-Xcli.debug=true --debug --dev"
-          # - ruby: jruby-head
-          #   env:
-          #     JRUBY_OPTS: "-Xcli.debug=true --debug --dev"
+        include:
+          - ruby: jruby-9.2.13.0
+            env:
+              JRUBY_OPTS: "-Xcli.debug=true --debug --dev"
+          - ruby: jruby-head
+            env:
+              JRUBY_OPTS: "-Xcli.debug=true --debug --dev"
     runs-on: ubuntu-20.04
     continue-on-error: ${{ matrix.allow_failure || endsWith(matrix.ruby, 'head') }}
     steps:
