@@ -29,7 +29,7 @@ jobs:
           - 2.6
           - 2.5
           - 2.4
-        include:
+        # include:
           # - ruby: jruby-9.2.13.0
           #   env:
           #     JRUBY_OPTS: "-Xcli.debug=true --debug --dev"
