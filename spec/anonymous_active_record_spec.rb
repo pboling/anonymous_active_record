@@ -12,12 +12,14 @@ RSpec.describe AnonymousActiveRecord do
       it 'does not error' do
         expect { subject }.not_to raise_error
       end
+
       context 'instance' do
         subject { super().new }
 
         it 'can be instantiated' do
           expect(subject).to be_a(ActiveRecord::Base)
         end
+
         context 'timestamps' do
           it 'has' do
             expect(subject.created_at).to be_nil
@@ -35,9 +37,11 @@ RSpec.describe AnonymousActiveRecord do
           it 'does not error' do
             expect { subject }.not_to raise_error
           end
+
           it 'does not have name' do
             expect(subject).not_to respond_to(:name)
           end
+
           it 'sets timestamps' do
             expect(subject.created_at).not_to be_nil
             expect(subject.updated_at).not_to be_nil
@@ -76,12 +80,14 @@ RSpec.describe AnonymousActiveRecord do
       it 'does not error' do
         expect { subject }.not_to raise_error
       end
+
       context 'instance' do
         subject { super().new }
 
         it 'can be instantiated' do
           expect(subject).to be_a(ActiveRecord::Base)
         end
+
         context 'name' do
           it 'has' do
             expect(subject.name).to be_nil
@@ -106,9 +112,11 @@ RSpec.describe AnonymousActiveRecord do
           it 'does not error' do
             expect { subject }.not_to raise_error
           end
+
           it 'sets name' do
             expect(subject.name).to eq('Bobo')
           end
+
           it 'sets timestamps' do
             expect(subject.created_at).not_to be_nil
             expect(subject.updated_at).not_to be_nil
@@ -147,12 +155,14 @@ RSpec.describe AnonymousActiveRecord do
       it 'does not error' do
         expect { subject }.not_to raise_error
       end
+
       context 'instance' do
         subject { super().new }
 
         it 'can be instantiated' do
           expect(subject).to be_a(ActiveRecord::Base)
         end
+
         context 'name' do
           it 'has' do
             expect(subject.name).to be_nil
@@ -184,12 +194,15 @@ RSpec.describe AnonymousActiveRecord do
           it 'does not error' do
             expect { subject }.not_to raise_error
           end
+
           it 'sets name' do
             expect(subject.name).to eq('Bobo')
           end
+
           it 'sets baked_at' do
             expect([ActiveRecord::Type::Time::Value, Time]).to include(subject.baked_at.class)
           end
+
           it 'sets timestamps' do
             expect(subject.created_at).not_to be_nil
             expect(subject.updated_at).not_to be_nil
@@ -220,7 +233,9 @@ RSpec.describe AnonymousActiveRecord do
       let(:table_name) { 'dogs' }
       let(:klass_namespaces) { %w[Farm Animal] }
       let(:klass_basename) { 'my' }
-      let(:columns) { [{ name: 'name', type: 'string', default: 'Bird Man' }, { name: 'number', type: 'integer', default: 0 }] }
+      let(:columns) do
+        [{ name: 'name', type: 'string', default: 'Bird Man' }, { name: 'number', type: 'integer', default: 0 }]
+      end
       let(:indexes) { [] }
       let(:timestamps) { true }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
@@ -228,12 +243,14 @@ RSpec.describe AnonymousActiveRecord do
       it 'does not error' do
         expect { subject }.not_to raise_error
       end
+
       context 'instance' do
         subject { super().new }
 
         it 'can be instantiated' do
           expect(subject).to be_a(ActiveRecord::Base)
         end
+
         context 'name' do
           it 'has' do
             expect(subject.name).to eq('Bird Man')
@@ -265,12 +282,15 @@ RSpec.describe AnonymousActiveRecord do
           it 'does not error' do
             expect { subject }.not_to raise_error
           end
+
           it 'sets name' do
             expect(subject.name).to eq('Bobo')
           end
+
           it 'sets number' do
             expect(subject.number).to eq(111)
           end
+
           it 'sets timestamps' do
             expect(subject.created_at).not_to be_nil
             expect(subject.updated_at).not_to be_nil
@@ -309,12 +329,14 @@ RSpec.describe AnonymousActiveRecord do
       it 'does not error' do
         expect { subject }.not_to raise_error
       end
+
       context 'instance' do
         subject { super().new }
 
         it 'can be instantiated' do
           expect(subject).to be_a(ActiveRecord::Base)
         end
+
         context 'name' do
           it 'has' do
             expect(subject.name).to be_nil
@@ -346,12 +368,15 @@ RSpec.describe AnonymousActiveRecord do
           it 'does not error' do
             expect { subject }.not_to raise_error
           end
+
           it 'sets name' do
             expect(subject.name).to eq('Bobo')
           end
+
           it 'sets baked_at' do
             expect([ActiveRecord::Type::Time::Value, Time]).to include(subject.baked_at.class)
           end
+
           it 'sets timestamps' do
             expect(subject.created_at).not_to be_nil
             expect(subject.updated_at).not_to be_nil
@@ -415,19 +440,21 @@ RSpec.describe AnonymousActiveRecord do
       let(:klass_namespaces) { %w[Farm Animal] }
       let(:klass_basename) { 'my' }
       let(:columns) { [{ name: 'name', type: 'string' }, { name: 'baked_at', type: 'time' }] }
-      let(:indexes) { [[['name'], unique: true], 'baked_at'] }
+      let(:indexes) { [[['name'], { unique: true }], 'baked_at'] }
       let(:timestamps) { true }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
 
       it 'does not error' do
         expect { subject }.not_to raise_error
       end
+
       context 'instance' do
         subject { super().new }
 
         it 'can be instantiated' do
           expect(subject).to be_a(ActiveRecord::Base)
         end
+
         context 'name' do
           it 'has' do
             expect(subject.name).to be_nil
@@ -459,12 +486,15 @@ RSpec.describe AnonymousActiveRecord do
           it 'does not error' do
             expect { subject }.not_to raise_error
           end
+
           it 'sets name' do
             expect(subject.name).to eq('Bobo')
           end
+
           it 'sets baked_at' do
             expect([ActiveRecord::Type::Time::Value, Time]).to include(subject.baked_at.class)
           end
+
           it 'sets timestamps' do
             expect(subject.created_at).not_to be_nil
             expect(subject.updated_at).not_to be_nil
@@ -525,12 +555,14 @@ RSpec.describe AnonymousActiveRecord do
       it 'does not error' do
         expect { subject }.not_to raise_error
       end
+
       context 'instance' do
         subject { super().new }
 
         it 'can be instantiated' do
           expect(subject).to be_a(ActiveRecord::Base)
         end
+
         context 'timestamps' do
           it 'has not' do
             expect(subject).not_to respond_to(:created_at)
@@ -549,9 +581,11 @@ RSpec.describe AnonymousActiveRecord do
           it 'does not error' do
             expect { subject }.not_to raise_error
           end
+
           it 'sets name' do
             expect(subject.name).to eq('Bobo')
           end
+
           it 'has no timestamps' do
             expect(subject).not_to respond_to(:created_at)
             expect(subject).not_to respond_to(:updated_at)
@@ -588,16 +622,19 @@ RSpec.describe AnonymousActiveRecord do
       it 'does not error' do
         expect { subject }.not_to raise_error
       end
+
       context 'instance' do
         subject { super().new(name: 'Marty McFly') }
 
         it 'can be instantiated' do
           expect(subject).to be_a(ActiveRecord::Base)
         end
+
         context 'block' do
           it 'defines method' do
             expect(subject.eat_pie).to eq('eating')
           end
+
           it 'has access to class context' do
             expect(subject.flowery_name).to eq('🌸Marty McFly🌸')
           end
@@ -621,12 +658,15 @@ RSpec.describe AnonymousActiveRecord do
           it 'does not error' do
             expect { subject }.not_to raise_error
           end
+
           it 'sets name' do
             expect(subject.name).to eq('Bobo')
           end
+
           it 'has access to class context' do
             expect(subject.flowery_name).to eq('🌸Bobo🌸')
           end
+
           it 'has no timestamps' do
             expect(subject).not_to respond_to(:created_at)
             expect(subject).not_to respond_to(:updated_at)
@@ -671,6 +711,7 @@ RSpec.describe AnonymousActiveRecord do
         it 'be an array' do
           expect(subject).to be_a(Array)
         end
+
         it 'has length 0' do
           expect(subject.length).to eq(0)
         end
@@ -710,6 +751,7 @@ RSpec.describe AnonymousActiveRecord do
         it 'be an array' do
           expect(subject).to be_a(Array)
         end
+
         it 'has length 2' do
           expect(subject.length).to eq(2)
         end
@@ -749,6 +791,7 @@ RSpec.describe AnonymousActiveRecord do
         it 'be an array' do
           expect(subject).to be_a(Array)
         end
+
         it 'has length 2' do
           expect(subject.length).to eq(2)
         end
@@ -796,6 +839,7 @@ RSpec.describe AnonymousActiveRecord do
         it 'be an array' do
           expect(subject).to be_a(Array)
         end
+
         it 'has length 2' do
           expect(subject.length).to eq(2)
         end
@@ -827,6 +871,7 @@ RSpec.describe AnonymousActiveRecord do
         it 'be an array' do
           expect(subject).to be_a(Array)
         end
+
         it 'has length 0' do
           expect(subject.length).to eq(0)
         end
@@ -866,6 +911,7 @@ RSpec.describe AnonymousActiveRecord do
         it 'be an array' do
           expect(subject).to be_a(Array)
         end
+
         it 'has length 2' do
           expect(subject.length).to eq(2)
         end
@@ -905,6 +951,7 @@ RSpec.describe AnonymousActiveRecord do
         it 'be an array' do
           expect(subject).to be_a(Array)
         end
+
         it 'has length 2' do
           expect(subject.length).to eq(2)
         end
@@ -952,6 +999,7 @@ RSpec.describe AnonymousActiveRecord do
         it 'be an array' do
           expect(subject).to be_a(Array)
         end
+
         it 'has length 2' do
           expect(subject.length).to eq(2)
         end

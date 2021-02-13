@@ -18,9 +18,10 @@ module AnonymousActiveRecord
 
     attr_reader :klass_namespaces, :table_name, :klass_name, :parent_klass
 
-    def initialize(table_name, klass_namespaces = [], klass_basename = nil, parent_klass = "ActiveRecord::Base")
+    def initialize(table_name, klass_namespaces = [], klass_basename = nil, parent_klass = 'ActiveRecord::Base')
       @klass_namespaces = Array(klass_namespaces).map(&:to_s).map { |x| x.gsub(/[^a-z0-9]+/i, '_') }
-      klass_context = [(klass_basename || DEFAULT_NAME).gsub(/[^a-z0-9]+/i, '_').capitalize, SecureRandom.uuid.gsub(/[^a-z0-9]+/i, '_')].join('_')
+      klass_context = [(klass_basename || DEFAULT_NAME).gsub(/[^a-z0-9]+/i, '_').capitalize,
+                       SecureRandom.uuid.gsub(/[^a-z0-9]+/i, '_')].join('_')
       @table_name = (table_name || klass_context).downcase.to_s
       # String#capitalize is Ruby >= 2.4, https://stackoverflow.com/a/3725154/213191
       @klass_name = (klass_namespaces << klass_context).join('::')
