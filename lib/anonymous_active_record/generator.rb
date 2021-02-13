@@ -35,7 +35,7 @@ module AnonymousActiveRecord
       #   https://github.com/rails/rails/issues/8934
       eval "class ::#{klass_name} < #{parent_klass}; end"
       klass = Kernel.const_get(klass_name, true)
-      klass.class_eval(&block) if block_given?
+      klass.class_eval(&block) if block
       klass.table_name = table_name
       klass
     end

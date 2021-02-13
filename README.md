@@ -49,7 +49,7 @@ Let's say you want to write specs for a module, `HasBalloon`, which provides a m
 ```ruby
 module HasBalloon
   def has_balloon?
-    name == 'Spot' ? true : false # only Spot has a balloon
+    name == 'Spot' # only Spot has a balloon
   end
 end
 ```
@@ -57,61 +57,62 @@ end
 This won't work [(really!)](https://github.com/rails/rails/issues/8934):
 
 ```ruby
-  let(:ar_with_balloon) do
-    Class.new(ActiveRecord::Base) do
-      attr_accessor :name
-      include HasBalloon
-      def flowery_name
-        "#{b_f}#{name}#{b_f}"
-      end
-      def b_f
-        has_balloon? ? '🎈' : '🌸'
-      end
+let(:ar_with_balloon) do
+  Class.new(ActiveRecord::Base) do
+    attr_accessor :name
+
+    include HasBalloon
+    def flowery_name
+      "#{b_f}#{name}#{b_f}"
+    end
+    def b_f
+      has_balloon? ? '🎈' : '🌸'
     end
   end
+end
 ```
 
 So do this instead:
 
 ```ruby
-  let(:ar_with_balloon) do
-    AnonymousActiveRecord.generate(columns: ['name']) do
-      include HasBalloon
-      def flowery_name
-        "#{b_f}#{name}#{b_f}"
-      end
-      def b_f
-        has_balloon? ? '🎈' : '🌸'
-      end
+let(:ar_with_balloon) do
+  AnonymousActiveRecord.generate(columns: ['name']) do
+    include HasBalloon
+    def flowery_name
+      "#{b_f}#{name}#{b_f}"
+    end
+    def b_f
+      has_balloon? ? '🎈' : '🌸'
     end
   end
-  it 'can test the module' do
-    expect(ar_with_balloon.new(name: 'Spot').flowery_name).to eq('🎈Spot🎈')
-    expect(ar_with_balloon.new(name: 'Not Spot').flowery_name).to eq('🌸Not Spot🌸')
-  end
+end
+it 'can test the module' do
+  expect(ar_with_balloon.new(name: 'Spot').flowery_name).to eq('🎈Spot🎈')
+  expect(ar_with_balloon.new(name: 'Not Spot').flowery_name).to eq('🌸Not Spot🌸')
+end
 ```
 
 ### Generate Options
 
 ```ruby
 AnonymousActiveRecord.generate(
-    table_name: 'a_table_name', 
-        # if table_name is not set klass_basename will be used to derive a unique random table_name
-        # default is a unique random table name
-    klass_basename: 'anons', # is default
-    columns: ['name'], 
-        # columns default is [], 
-        # meaning class will have ['id', 'created_at', 'updated_at'], as the AR defaults
-        # Optionally provide an array of hashes and thereby designate column type:
-        # [{name: 'name', type: 'string'}, {name: 'baked_at', type: 'time'}]
-    timestamps: true, # is default
-    indexes: [{columns: ['name'], unique: true}],
-        # indexes default is [], 
-        # meaning class will have no indexes, as the AR defaults
-        # Optionally provide an array of hashes of index options (similar to those used in Rails migrations):
-        # [{columns: ['name'], unique: true}, {columns: ['baked_at']}]
-    connection_params: { adapter: 'sqlite3', encoding: 'utf8', database: ':memory:' } # is default
-) do
+  table_name: 'a_table_name',
+      # if table_name is not set klass_basename will be used to derive a unique random table_name
+      # default is a unique random table name
+  klass_basename: 'anons', # is default
+  columns: ['name'],
+      # columns default is [],
+      # meaning class will have ['id', 'created_at', 'updated_at'], as the AR defaults
+      # Optionally provide an array of hashes and thereby designate column type:
+      # [{name: 'name', type: 'string'}, {name: 'baked_at', type: 'time'}]
+  timestamps: true, # is default
+  indexes: [{ columns: ['name'], unique: true }],
+      # indexes default is [],
+      # meaning class will have no indexes, as the AR defaults
+      # Optionally provide an array of hashes of index options (similar to those used in Rails migrations):
+      # [{columns: ['name'], unique: true}, {columns: ['baked_at']}]
+  connection_params: { adapter: 'sqlite3', encoding: 'utf8', database: ':memory:' } # is default
+  ) do
    # code which becomes part of the class definition
 end
 ```
@@ -122,10 +123,10 @@ The block is optional.
 
 ```ruby
 AnonymousActiveRecord.factory(
-    source_data: [{name: 'Phil'}, {name: 'Vickie'}],
+  source_data: [{ name: 'Phil' }, { name: 'Vickie' }]
         # Array of hashes, where each hash represents a record that will be created
     # ... The rest of the options are the same as for generate, see above.
-) do
+  ) do
   # same as for generate, see above.
 end
 ```
@@ -170,7 +171,7 @@ spec.add_dependency 'anonymous_active_record', '~> 0.0'
 
 * Copyright (c) 2018 [Peter H. Boling][peterboling] of [Rails Bling][railsbling]
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record?ref=badge_large)
 

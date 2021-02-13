@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'bundler/setup'
-
 require 'byebug' if RUBY_ENGINE == 'ruby'
 
 require 'rspec/block_is_expected'
