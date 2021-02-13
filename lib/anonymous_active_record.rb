@@ -55,7 +55,7 @@ module AnonymousActiveRecord
           # :name and :type are required at minimum
           name = col.delete(:name)
           type = col.delete(:type)
-          t.column(name, type, col)
+          t.column(name, type, **col)
         elsif col.is_a?(Array)
           t.column col[0], col[-1] || :string
         else
@@ -65,7 +65,7 @@ module AnonymousActiveRecord
       indexes.each do |idx_options|
         if idx_options.is_a?(Hash)
           column_names = idx_options.delete(:columns)
-          t.index column_names, idx_options
+          t.index column_names, **idx_options
         elsif idx_options.is_a?(Array)
           if idx_options.length == 1
             t.index idx_options[0]
