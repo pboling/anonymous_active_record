@@ -27,13 +27,6 @@ jobs:
           - 2.6
           - 2.5
           - 2.4
-        include:
-          - ruby: jruby-9.2.13.0
-            env:
-              JRUBY_OPTS: "-Xcli.debug=true --debug --dev"
-          - ruby: jruby-head
-            env:
-              JRUBY_OPTS: "-Xcli.debug=true --debug --dev"
     runs-on: ubuntu-20.04
     continue-on-error: ${{ matrix.allow_failure || endsWith(matrix.ruby, 'head') }}
     steps:

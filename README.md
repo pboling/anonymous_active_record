@@ -36,6 +36,11 @@ Or install it yourself as:
 
     $ gem install anonymous_active_record
 
+## Compatibility
+
+This gem is compatible with, as of Feb 2021:
+• Ruby 2.4, 2.5, 2.6, 2.7, 3.0, ruby-head
+
 ## Usage
 
 Require the library in your `spec_helper` or other test suite boot file.
