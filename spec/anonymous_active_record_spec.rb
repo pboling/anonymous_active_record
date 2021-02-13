@@ -188,7 +188,7 @@ RSpec.describe AnonymousActiveRecord do
             expect(subject.name).to eq('Bobo')
           end
           it 'sets baked_at' do
-            expect(subject.baked_at).to be_a(ActiveRecord::Type::Time::Value)
+            expect([ActiveRecord::Type::Time::Value, Time]).to include(subject.baked_at.class)
           end
           it 'sets timestamps' do
             expect(subject.created_at).not_to be_nil
@@ -350,7 +350,7 @@ RSpec.describe AnonymousActiveRecord do
             expect(subject.name).to eq('Bobo')
           end
           it 'sets baked_at' do
-            expect(subject.baked_at).to be_a(ActiveRecord::Type::Time::Value)
+            expect([ActiveRecord::Type::Time::Value, Time]).to include(subject.baked_at.class)
           end
           it 'sets timestamps' do
             expect(subject.created_at).not_to be_nil
@@ -463,7 +463,7 @@ RSpec.describe AnonymousActiveRecord do
             expect(subject.name).to eq('Bobo')
           end
           it 'sets baked_at' do
-            expect(subject.baked_at).to be_a(ActiveRecord::Type::Time::Value)
+            expect([ActiveRecord::Type::Time::Value, Time]).to include(subject.baked_at.class)
           end
           it 'sets timestamps' do
             expect(subject.created_at).not_to be_nil
