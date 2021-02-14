@@ -42,14 +42,15 @@ module AnonymousActiveRecord
     encoding: 'utf8',
     database: ':memory:'
   }.freeze
+  DEFAULT_PARENT_KLASS = 'ActiveRecord::Base'
 
   # Defines a pseudo anonymous class in a particular namespace of your choosing.
-  def generate(table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, parent_klass: 'ActiveRecord::Base', connection_params: DEFAULT_CONNECTION_PARAMS, &block)
+  def generate(table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, parent_klass: DEFAULT_PARENT_KLASS, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
     gen = AnonymousActiveRecord::Generator.new(table_name, klass_namespaces, klass_basename, parent_klass)
     klass = gen.generate(&block)
     connection_params = YAML.load_file(connection_params) if connection_params.is_a?(String)
     klass.establish_connection(connection_params.dup)
-    klass.connection.create_table gen.table_name do |t|
+    klass.connection.create_table(gen.table_name) do |t|
       columns.each do |col|
         if col.is_a?(Hash)
           # :name and :type are required at minimum
@@ -57,7 +58,15 @@ module AnonymousActiveRecord
           type = col.delete(:type)
           t.column(name, type, **col)
         elsif col.is_a?(Array)
-          t.column col[0], col[-1] || :string
+          if col[-1].is_a?(Hash)
+            if col[-1].present?
+              t.column col[0], **col[-1]
+            else
+              t.column col[0], :string
+            end
+          else
+            t.column col[0], col[-1] || :string
+          end
         else
           t.column col, :string
         end
@@ -69,8 +78,10 @@ module AnonymousActiveRecord
         elsif idx_options.is_a?(Array)
           if idx_options.length == 1
             t.index idx_options[0]
-          else
+          elsif idx_options[-1].is_a?(Hash)
             t.index idx_options[0], **idx_options[-1]
+          else
+            t.index idx_options[0], idx_options[-1]
           end
         else
           t.index idx_options
@@ -82,26 +93,52 @@ module AnonymousActiveRecord
   end
 
   # Initializes instances of a pseudo anonymous class in a particular namespace of your choosing.
-  def factory(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, parent_klass: 'ActiveRecord::Base', connection_params: DEFAULT_CONNECTION_PARAMS, &block)
+  def factory(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, parent_klass: DEFAULT_PARENT_KLASS, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
     factory = _factory(
-      source_data: source_data, table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, indexes: indexes, timestamps: timestamps, parent_klass: parent_klass, connection_params: connection_params, &block
+      source_data: source_data,
+      table_name: table_name,
+      klass_namespaces: klass_namespaces,
+      klass_basename: klass_basename,
+      columns: columns,
+      indexes: indexes,
+      timestamps: timestamps,
+      parent_klass: parent_klass,
+      connection_params: connection_params,
+      &block
     )
     factory.run
   end
 
   # Initializes instances of a pseudo anonymous class in a particular namespace of your choosing.
-  def factory!(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, parent_klass: 'ActiveRecord::Base', connection_params: DEFAULT_CONNECTION_PARAMS, &block)
+  def factory!(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, parent_klass: DEFAULT_PARENT_KLASS, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
     factory = _factory(
-      source_data: source_data, table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, indexes: indexes, timestamps: timestamps, parent_klass: parent_klass, connection_params: connection_params, &block
+      source_data: source_data,
+      table_name: table_name,
+      klass_namespaces: klass_namespaces,
+      klass_basename: klass_basename,
+      columns: columns,
+      indexes: indexes,
+      timestamps: timestamps,
+      parent_klass: parent_klass,
+      connection_params: connection_params,
+      &block
     )
     factory.run!
   end
 
   private
 
-  def _factory(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, parent_klass: 'ActiveRecord::Base', connection_params: DEFAULT_CONNECTION_PARAMS, &block)
+  def _factory(source_data: [], table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, parent_klass: DEFAULT_PARENT_KLASS, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
     klass = generate(
-      table_name: table_name, klass_namespaces: klass_namespaces, klass_basename: klass_basename, columns: columns, timestamps: timestamps, parent_klass: parent_klass, indexes: indexes, connection_params: connection_params, &block
+      table_name: table_name,
+      klass_namespaces: klass_namespaces,
+      klass_basename: klass_basename,
+      columns: columns,
+      timestamps: timestamps,
+      parent_klass: parent_klass,
+      indexes: indexes,
+      connection_params: connection_params,
+      &block
     )
     AnonymousActiveRecord::Factory.new(source_data, klass)
   end
