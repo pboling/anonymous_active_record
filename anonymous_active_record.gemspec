@@ -14,8 +14,15 @@ Gem::Specification.new do |spec|
   spec.description   = 'Replacement for broken Class.new(ActiveRecord::Base)'
   spec.homepage      = 'https://github.com/pboling/anonymous_active_record'
 
-  spec.files = Dir['lib/**/*', 'LICENSE', 'README.md', 'CODE_OF_CONDUCT.md']
-  spec.test_files = Dir['spec/**/*']
+  spec.files = Dir[
+    # Splats (alphabetical)
+    "lib/**/*",
+    # Files (alphabetical)
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "CODE_OF_CONDUCT.md"
+  ]
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
