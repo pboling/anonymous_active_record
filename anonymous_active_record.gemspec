@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.4" # Requirement for Ruby String#capitalize
 
-  spec.metadata["homepage_uri"] = "https://railsbling.com/tags/gem_bench/"
+  spec.metadata["homepage_uri"] = "https://railsbling.com/tags/anonymous_active_record/"
   spec.metadata["source_code_uri"] = "#{spec.homepage}/tree/v#{spec.version}"
   spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/v#{spec.version}/CHANGELOG.md"
   spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"

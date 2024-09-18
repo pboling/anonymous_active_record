@@ -8,6 +8,7 @@
 [![Version](https://img.shields.io/gem/v/anonymous_active_record.svg)](https://rubygems.org/gems/anonymous_active_record)
 [![Downloads Today](https://img.shields.io/gem/rd/anonymous_active_record.svg)](https://github.com/pboling/anonymous_active_record)
 [![Depfu](https://badges.depfu.com/badges/272ce0df3bc6df5cbea9354e2c3b65af/overview.svg)](https://depfu.com/github/pboling/anonymous_active_record?project_id=5614)
+[![CodeCov][🖇codecov-img♻️]][🖇codecov]
 [![Test Coverage](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/test_coverage)](https://codeclimate.com/github/pboling/anonymous_active_record/test_coverage) |
 [![Maintainability](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/maintainability)](https://codeclimate.com/github/pboling/anonymous_active_record/maintainability) |
 [![CI Supported Build][🚎s-wfi]][🚎s-wf]
@@ -18,6 +19,8 @@
 [![CI Ancient Build][🚎an-wfi]][🚎an-wf]
 [![CI Dead Build][🚎ded-wfi]][🚎ded-wf]
 
+[🖇codecov-img♻️]: https://codecov.io/gh/pboling/anonymous_active_record/graph/badge.svg?token=FLAk5BEAkv
+[🖇codecov]: https://codecov.io/gh/pboling/anonymous_active_record
 [🚎s-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/supported.yml
 [🚎s-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/supported.yml/badge.svg
 [🚎us-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/unsupported.yml
@@ -67,36 +70,52 @@ This library was 🎩 inspired by 🎩, the [Wolverine project](https://github.c
 
 Warning: Use of this gem is a **security risk**, due to the use of Ruby's `eval`.  It is intended for use in a test suite, or other non-critical environment.
 
-| Project                 |  AnonymousActiveRecord |
-|------------------------ | ----------------------- |
-| gem name                |  [anonymous_active_record](https://rubygems.org/gems/anonymous_active_record) |
-| code triage             |  [![Open Source Helpers](https://www.codetriage.com/pboling/anonymous_active_record/badges/users.svg)](https://www.codetriage.com/pboling/anonymous_active_record) |
-| FOSSA Licenses | [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record?ref=badge_shield) |
-| homepage                |  [on Github.com][homepage], [on Railsbling.com][blogpage] |
-| documentation           |  [on RDoc.info][documentation] |
-| expert support         | [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
-| Spread ~♡ⓛⓞⓥⓔ♡~      |  [🌏](https://about.me/peter.boling), [👼](https://angel.co/peter-boling), [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo) |
+| Project        | AnonymousActiveRecord                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| gem name       | [anonymous_active_record](https://rubygems.org/gems/anonymous_active_record)                                                                                                                                                                                                                                                                                                                                                                          |
+| code triage    | [![Open Source Helpers](https://www.codetriage.com/pboling/anonymous_active_record/badges/users.svg)](https://www.codetriage.com/pboling/anonymous_active_record)                                                                                                                                                                                                                                                                                     |
+| FOSSA Licenses | [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record?ref=badge_shield)                                                                                                                                                                                                                        |
+| homepage       | [on Github.com][homepage], [on Railsbling.com][blogpage]                                                                                                                                                                                                                                                                                                                                                                                              |
+| documentation  | [on RDoc.info][documentation]                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| expert support | [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github)                                                                                                                                                                                                                                                 |
+| `...` 💖       | [![Liberapay Patrons][⛳liberapay-img]][⛳liberapay] [![Sponsor Me][🖇sponsor-img]][🖇sponsor] [![Follow Me on LinkedIn][🖇linkedin-img]][🖇linkedin] [![Find Me on WellFound:][✌️wellfound-img]][✌️wellfound] [![Find Me on CrunchBase][💲crunchbase-img]][💲crunchbase] [![My LinkTree][🌳linktree-img]][🌳linktree] [![Follow Me on Ruby.Social][🐘ruby-mast-img]][🐘ruby-mast] [![Tweet @ Peter][🐦tweet-img]][🐦tweet] [💻][coderme] [🌏][aboutme] |
+
+<!-- 7️⃣ spread 💖 -->
+[🐦tweet-img]: https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow%20%40galtzo
+[🐦tweet]: http://twitter.com/galtzo
+[🚎blog]: http://www.railsbling.com/tags/anonymous_active_record/
+[🚎blog-img]: https://img.shields.io/badge/blog-railsbling-brightgreen.svg?style=flat
+[🖇linkedin]: http://www.linkedin.com/in/peterboling
+[🖇linkedin-img]: https://img.shields.io/badge/PeterBoling-blue?style=plastic&logo=linkedin
+[✌️wellfound]: https://angel.co/u/peter-boling
+[✌️wellfound-img]: https://img.shields.io/badge/peter--boling-orange?style=plastic&logo=wellfound
+[💲crunchbase]: https://www.crunchbase.com/person/peter-boling
+[💲crunchbase-img]: https://img.shields.io/badge/peter--boling-purple?style=plastic&logo=crunchbase
+[🐘ruby-mast]: https://ruby.social/@galtzo
+[🐘ruby-mast-img]: https://img.shields.io/mastodon/follow/109447111526622197?domain=https%3A%2F%2Fruby.social&style=plastic&logo=mastodon&label=Ruby%20%40galtzo
+[🌳linktree]: https://linktr.ee/galtzo
+[🌳linktree-img]: https://img.shields.io/badge/galtzo-purple?style=plastic&logo=linktree
+
+<!-- Maintainer Contact Links -->
+[aboutme]: https://about.me/peter.boling
+[coderme]: https://coderwall.com/Peter%20Boling
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Install the gem and add to the application's Gemfile by executing,
+adding the `--group test` on the end if you will only use it for testing
+(which is the only way it should be used):
 
-```ruby
-gem "anonymous_active_record"
-```
+    $ bundle add anonymous_active_record --group test
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+If bundler is not being used to manage dependencies, install the gem by executing:
 
     $ gem install anonymous_active_record
 
 ## Compatibility
 
-This gem is compatible with, as of Feb 2021:
-• Ruby 2.4, 2.5, 2.6, 2.7, 3.0, ruby-head
+This gem is compatible with, as of Sep 2024:
+• Ruby 2.4, 2.5, 2.6, 2.7, 3.0, 3.1, 3.2, 3.3, ruby-head, truffleruby-head
 
 ## Usage
 
@@ -197,51 +216,99 @@ The block is optional.
 
 There is also a `factory!` method that will raise if the create fails, accomplished by calling `create!` instead of `create`.
 
-## Development
+## 🤝 Contributing
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+See [CONTRIBUTING.md][🤝contributing]
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+[🤝contributing]: CONTRIBUTING.md
 
-## Contributing
+### Code Coverage
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/pboling/anonymous_active_record. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+If you need some ideas of where to help, you could work on adding more code coverage.
 
-## Code of Conduct
+[![Coverage Graph][🔑codecov-g]][🖇codecov]
 
-Everyone interacting in the AnonymousActiveRecord project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/pboling/anonymous_active_record/blob/master/CODE_OF_CONDUCT.md).
+[🔑codecov-g]: https://codecov.io/gh/pboling/anonymous_active_record/graphs/tree.svg?token=FLAk5BEAkv
 
-## Versioning
+## 🌈 Contributors
 
-This library aims to adhere to [Semantic Versioning 2.0.0][semver].
-Violations of this scheme should be reported as bugs. Specifically,
-if a minor or patch version is released that breaks backward
-compatibility, a new version should be immediately released that
-restores compatibility. Breaking changes to the public API will
-only be introduced with new major versions.
+[![Contributors][🖐contributors-img]][🖐contributors]
 
-As a result of this policy, you can (and should) specify a
-dependency on this gem using the [Pessimistic Version Constraint][pvc] with two digits of precision.
+Made with [contributors-img][🖐contrib-rocks].
+
+[🖐contrib-rocks]: https://contrib.rocks
+[🖐contributors]: https://github.com/pboling/anonymous_active_record/graphs/contributors
+[🖐contributors-img]: https://contrib.rocks/image?repo=pboling/anonymous_active_record
+
+## Star History
+
+<a href="https://star-history.com/#pboling/anonymous_active_record&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=pboling/anonymous_active_record&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=pboling/anonymous_active_record&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=pboling/anonymous_active_record&type=Date" />
+ </picture>
+</a>
+
+## 🪇 Code of Conduct
+
+Everyone interacting in this project's codebases, issue trackers,
+chat rooms and mailing lists is expected to follow the [code of conduct][🪇conduct].
+
+[🪇conduct]: CODE_OF_CONDUCT.md
+
+## 📌 Versioning
+
+This Library adheres to [Semantic Versioning 2.0.0][📌semver].
+Violations of this scheme should be reported as bugs.
+Specifically, if a minor or patch version is released that breaks backward compatibility,
+a new version should be immediately released that restores compatibility.
+Breaking changes to the public API will only be introduced with new major versions.
+
+To get a better understanding of how SemVer is intended to work over a project's lifetime,
+read this article from the creator of SemVer:
+
+- ["Major Version Numbers are Not Sacred"][📌major-versions-not-sacred]
+
+As a result of this policy, you can (and should) specify a dependency on these libraries using
+the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
 
 For example:
 
 ```ruby
-spec.add_dependency("anonymous_active_record", "~> 0.0")
+spec.add_dependency("anonymous_active_record", "~> 1.0")
 ```
 
-## License
+See [CHANGELOG.md][📌changelog] for list of releases.
 
-* Copyright (c) 2018 - 2022, 2024 [Peter H. Boling][peterboling] of [Rails Bling][railsbling]
+[comment]: <> ( 📌 VERSIONING LINKS )
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[📌pvc]: http://guides.rubygems.org/patterns/#pessimistic-version-constraint
+[📌semver]: http://semver.org/
+[📌major-versions-not-sacred]: https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html
+[📌changelog]: CHANGELOG.md
+
+## 📄 License
+
+The gem is available as open source under the terms of
+the [MIT License][📄license] [![License: MIT][📄license-img]][📄license-ref].
+See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright-notice-explainer].
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record?ref=badge_large)
 
-[license]: LICENSE.txt
-[semver]: http://semver.org/
-[pvc]: http://guides.rubygems.org/patterns/#pessimistic-version-constraint
+[comment]: <> ( 📄 LEGAL LINKS )
+
+[📄copyright-notice-explainer]: https://opensource.stackexchange.com/questions/5778/why-do-licenses-such-as-the-mit-license-specify-a-single-year
+[📄license]: LICENSE.txt
+[📄license-ref]: https://opensource.org/licenses/MIT
+[📄license-img]: https://img.shields.io/badge/License-MIT-green.svg
+
+### © Copyright
+
+* Copyright (c) 2017 - 2022, 2024 [Peter H. Boling][peterboling] of [Rails Bling][railsbling]
+
 [railsbling]: http://www.railsbling.com
 [peterboling]: http://www.peterboling.com
+[bundle-group-pattern]: https://gist.github.com/pboling/4564780
 [documentation]: http://rdoc.info/github/pboling/anonymous_active_record/frames
-[homepage]: https://github.com/pboling/anonymous_active_record/
-[blogpage]: http://www.railsbling.com/tags/anonymous_active_record/
+[homepage]: https://github.com/pboling/anonymous_active_record
