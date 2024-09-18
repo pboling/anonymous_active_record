@@ -15,6 +15,8 @@
 [![CI Style Build][🚎st-wfi]][🚎st-wf]
 [![CI Coverage Build][🚎cov-wfi]][🚎cov-wf]
 [![CI Heads Build][🚎hd-wfi]][🚎hd-wf]
+[![CI Ancient Build][🚎an-wfi]][🚎an-wf]
+[![CI Dead Build][🚎ded-wfi]][🚎ded-wf]
 
 [🚎s-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/supported.yml
 [🚎s-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/supported.yml/badge.svg
@@ -26,6 +28,10 @@
 [🚎cov-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/coverage.yml/badge.svg
 [🚎hd-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/heads.yml
 [🚎hd-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/heads.yml/badge.svg
+[🚎an-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/ancient.yml
+[🚎an-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/ancient.yml/badge.svg
+[🚎ded-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/dead.yml
+[🚎ded-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/dead.yml/badge.svg
 
 </div>
 
