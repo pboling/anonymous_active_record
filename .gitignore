@@ -1,6 +1,5 @@
 /.bundle/
 /.yardoc
-/Gemfile.lock
 /*.gem
 /_yardoc/
 /coverage/
