@@ -15,6 +15,8 @@
 [![CI Style Build][🚎st-wfi]][🚎st-wf]
 [![CI Coverage Build][🚎cov-wfi]][🚎cov-wf]
 [![CI Heads Build][🚎hd-wfi]][🚎hd-wf]
+[![CI Ancient Build][🚎an-wfi]][🚎an-wf]
+[![CI Dead Build][🚎ded-wfi]][🚎ded-wf]
 
 [🚎s-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/supported.yml
 [🚎s-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/supported.yml/badge.svg
@@ -26,6 +28,10 @@
 [🚎cov-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/coverage.yml/badge.svg
 [🚎hd-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/heads.yml
 [🚎hd-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/heads.yml/badge.svg
+[🚎an-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/ancient.yml
+[🚎an-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/ancient.yml/badge.svg
+[🚎ded-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/dead.yml
+[🚎ded-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/dead.yml/badge.svg
 
 </div>
 
@@ -225,13 +231,13 @@ spec.add_dependency("anonymous_active_record", "~> 0.0")
 
 ## License
 
-* Copyright (c) 2018 [Peter H. Boling][peterboling] of [Rails Bling][railsbling]
+* Copyright (c) 2018 - 2022, 2024 [Peter H. Boling][peterboling] of [Rails Bling][railsbling]
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record?ref=badge_large)
 
-[license]: LICENSE
+[license]: LICENSE.txt
 [semver]: http://semver.org/
 [pvc]: http://guides.rubygems.org/patterns/#pessimistic-version-constraint
 [railsbling]: http://www.railsbling.com

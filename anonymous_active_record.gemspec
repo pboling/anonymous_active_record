@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
     "lib/**/*",
     # Files (alphabetical)
     "CHANGELOG.md",
-    "LICENSE",
+    "LICENSE.txt",
     "README.md",
     "CODE_OF_CONDUCT.md"
   ]
