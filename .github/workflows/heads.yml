@@ -47,7 +47,8 @@ jobs:
         ruby:
           - "ruby-head"
           # NOTE: jruby-head is still @ Ruby 3.1 compat
-          - "jruby-head"
+          # TODO: sqlite3 won't install on jruby-head
+          # - "jruby-head"
           # NOTE: truffleruby-head is still @ Ruby 3.1 compat
           - "truffleruby-head"
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
