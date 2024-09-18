@@ -135,7 +135,7 @@ RSpec.describe AnonymousActiveRecord do
       let(:klass_namespaces) { %w[Farm Animal] }
       let(:klass_basename) { "my" }
       let(:columns) { [["name", :string, {limit: 10}], ["baked_at", :time], ["smurf"]] }
-      let(:indexes) { [[:name, {if_not_exists: true}], [[:baked_at, :name]], [[:baked_at, :smurf], {if_not_exists: true}]] }
+      let(:indexes) { [[:name, {name: "name_index"}], [[:baked_at, :name]], [[:baked_at, :smurf], {name: "baked_smurf_index"}]] }
       let(:timestamps) { true }
       let(:connection_params) { AnonymousActiveRecord::DEFAULT_CONNECTION_PARAMS }
 

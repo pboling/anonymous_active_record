@@ -5,7 +5,7 @@
   "lib/anonymous_active_record/generator.rb:2931541877": [
     [38, 7, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787]
   ],
-  "spec/anonymous_active_record_spec.rb:2275022737": [
+  "spec/anonymous_active_record_spec.rb:1736797791": [
     [17, 7, 23, "RSpec/NestedGroups: Maximum example group nesting exceeded [4/3].", 4139299441],
     [21, 18, 7, "RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.", 1892732441],
     [24, 9, 20, "RSpec/NestedGroups: Maximum example group nesting exceeded [5/3].", 3393415879],
