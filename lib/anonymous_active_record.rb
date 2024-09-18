@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
-require 'active_record'
+# external gems
+require "version_gem"
+require "active_record"
 
-require 'anonymous_active_record/version'
-require 'anonymous_active_record/generator'
-require 'anonymous_active_record/factory'
+require "anonymous_active_record/version"
+require "anonymous_active_record/generator"
+require "anonymous_active_record/factory"
 
 # Public API for AnonymousActiveRecord is:
 #
@@ -38,11 +40,11 @@ require 'anonymous_active_record/factory'
 #
 module AnonymousActiveRecord
   DEFAULT_CONNECTION_PARAMS = {
-    adapter: 'sqlite3',
-    encoding: 'utf8',
-    database: ':memory:'
+    adapter: "sqlite3",
+    encoding: "utf8",
+    database: ":memory:",
   }.freeze
-  DEFAULT_PARENT_KLASS = 'ActiveRecord::Base'
+  DEFAULT_PARENT_KLASS = "ActiveRecord::Base"
 
   # Defines a pseudo anonymous class in a particular namespace of your choosing.
   def generate(table_name: nil, klass_namespaces: [], klass_basename: nil, columns: [], indexes: [], timestamps: true, parent_klass: DEFAULT_PARENT_KLASS, connection_params: DEFAULT_CONNECTION_PARAMS, &block)
@@ -58,33 +60,27 @@ module AnonymousActiveRecord
           type = col.delete(:type)
           t.column(name, type, **col)
         elsif col.is_a?(Array)
-          if col[-1].is_a?(Hash)
-            if col[-1].present?
-              t.column col[0], **col[-1]
-            else
-              t.column col[0], :string
-            end
+          options = col.extract_options!
+          if options.present?
+            t.column(*col, **options)
+          elsif col.length == 1
+            t.column(col[0], :string)
           else
-            t.column col[0], col[-1] || :string
+            t.column(col[0], col[-1] || :string)
           end
         else
-          t.column col, :string
+          t.column(col, :string)
         end
       end
       indexes.each do |idx_options|
         if idx_options.is_a?(Hash)
           column_names = idx_options.delete(:columns)
-          t.index column_names, **idx_options
+          t.index(column_names, **idx_options)
         elsif idx_options.is_a?(Array)
-          if idx_options.length == 1
-            t.index idx_options[0]
-          elsif idx_options[-1].is_a?(Hash)
-            t.index idx_options[0], **idx_options[-1]
-          else
-            t.index idx_options[0], idx_options[-1]
-          end
+          options = idx_options.extract_options!
+          t.index(*idx_options, **options)
         else
-          t.index idx_options
+          t.index(idx_options)
         end
       end
       t.timestamps if timestamps
@@ -144,4 +140,8 @@ module AnonymousActiveRecord
   end
 
   module_function :generate, :factory, :factory!, :_factory
+end
+
+AnonymousActiveRecord::Version.class_eval do
+  extend VersionGem::Basic
 end

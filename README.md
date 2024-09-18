@@ -1,5 +1,62 @@
 # AnonymousActiveRecord
 
+<div id="badges">
+
+<div align="center">
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/gem/v/anonymous_active_record.svg)](https://rubygems.org/gems/anonymous_active_record)
+[![Downloads Today](https://img.shields.io/gem/rd/anonymous_active_record.svg)](https://github.com/pboling/anonymous_active_record)
+[![Depfu](https://badges.depfu.com/badges/272ce0df3bc6df5cbea9354e2c3b65af/overview.svg)](https://depfu.com/github/pboling/anonymous_active_record?project_id=5614)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/test_coverage)](https://codeclimate.com/github/pboling/anonymous_active_record/test_coverage) |
+[![Maintainability](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/maintainability)](https://codeclimate.com/github/pboling/anonymous_active_record/maintainability) |
+[![CI Supported Build][🚎s-wfi]][🚎s-wf]
+[![CI Unsupported Build][🚎us-wfi]][🚎us-wf]
+[![CI Style Build][🚎st-wfi]][🚎st-wf]
+[![CI Coverage Build][🚎cov-wfi]][🚎cov-wf]
+[![CI Heads Build][🚎hd-wfi]][🚎hd-wf]
+
+[🚎s-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/supported.yml
+[🚎s-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/supported.yml/badge.svg
+[🚎us-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/unsupported.yml
+[🚎us-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/unsupported.yml/badge.svg
+[🚎st-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/style.yml
+[🚎st-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/style.yml/badge.svg
+[🚎cov-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/coverage.yml
+[🚎cov-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/coverage.yml/badge.svg
+[🚎hd-wf]: https://github.com/pboling/anonymous_active_record/actions/workflows/heads.yml
+[🚎hd-wfi]: https://github.com/pboling/anonymous_active_record/actions/workflows/heads.yml/badge.svg
+
+</div>
+
+-----
+
+<div align="center">
+
+[![Liberapay Patrons][⛳liberapay-img]][⛳liberapay]
+[![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor]
+[![Polar Shield][🖇polar-img]][🖇polar]
+[![Donate to my FLOSS or refugee efforts at ko-fi.com][🖇kofi-img]][🖇kofi]
+[![Donate to my FLOSS or refugee efforts using Patreon][🖇patreon-img]][🖇patreon]
+
+[⛳liberapay-img]: https://img.shields.io/liberapay/patrons/pboling.svg?logo=liberapay
+[⛳liberapay]: https://liberapay.com/pboling/donate
+[🖇sponsor-img]: https://img.shields.io/badge/Sponsor_Me!-pboling.svg?style=social&logo=github
+[🖇sponsor]: https://github.com/sponsors/pboling
+[🖇polar-img]: https://polar.sh/embed/seeks-funding-shield.svg?org=pboling
+[🖇polar]: https://polar.sh/pboling
+[🖇kofi-img]: https://img.shields.io/badge/buy%20me%20coffee-donate-yellow.svg
+[🖇kofi]: https://ko-fi.com/O5O86SNP4
+[🖇patreon-img]: https://img.shields.io/badge/patreon-donate-yellow.svg
+[🖇patreon]: https://patreon.com/galtzo
+
+<span class="badge-buymealatte">
+<a href="https://www.buymeacoffee.com/pboling"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a latte&emoji=&slug=pboling&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+</span>
+
+</div>
+</div>
+
 This library was 🎩 inspired by 🎩, the [Wolverine project](https://github.com/mcary/wolverine), which [implemented a clever workaround](https://github.com/mcary/wolverine/commit/fa27fa2cc485b2fa83d71b2045ba5a0a069dba75) to the official non-support of [anonymous classes by ActiveRecord](https://github.com/rails/rails/issues/8934).
 
 Warning: Use of this gem is a **security risk**, due to the use of Ruby's `eval`.  It is intended for use in a test suite, or other non-critical environment.
@@ -7,25 +64,19 @@ Warning: Use of this gem is a **security risk**, due to the use of Ruby's `eval`
 | Project                 |  AnonymousActiveRecord |
 |------------------------ | ----------------------- |
 | gem name                |  [anonymous_active_record](https://rubygems.org/gems/anonymous_active_record) |
-| license                 |  [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) |
-| download rank           |  [![Downloads Today](https://img.shields.io/gem/rd/anonymous_active_record.svg)](https://github.com/pboling/anonymous_active_record) |
-| version                 |  [![Version](https://img.shields.io/gem/v/anonymous_active_record.svg)](https://rubygems.org/gems/anonymous_active_record) |
-| dependencies            |  [![Depfu](https://badges.depfu.com/badges/272ce0df3bc6df5cbea9354e2c3b65af/count.svg)](https://depfu.com/github/pboling/anonymous_active_record?project_id=5614) |
-| continuous integration  |  [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fpboling%2Fanonymous_active_record%2Fbadge&style=flat)](https://actions-badge.atrox.dev/pboling/anonymous_active_record/goto) |
-| test coverage           |  [![Test Coverage](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/test_coverage)](https://codeclimate.com/github/pboling/anonymous_active_record/test_coverage) |
-| maintainability         |  [![Maintainability](https://api.codeclimate.com/v1/badges/fe504d4ab2fb77cecf7d/maintainability)](https://codeclimate.com/github/pboling/anonymous_active_record/maintainability) |
 | code triage             |  [![Open Source Helpers](https://www.codetriage.com/pboling/anonymous_active_record/badges/users.svg)](https://www.codetriage.com/pboling/anonymous_active_record) |
 | FOSSA Licenses | [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpboling%2Fanonymous_active_record?ref=badge_shield) |
 | homepage                |  [on Github.com][homepage], [on Railsbling.com][blogpage] |
 | documentation           |  [on RDoc.info][documentation] |
-| Spread ~♡ⓛⓞⓥⓔ♡~      |  [🌏](https://about.me/peter.boling), [👼](https://angel.co/peter-boling), [:shipit:](http://coderwall.com/pboling), [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo), [🌹](https://nationalprogressiveparty.org) |
+| expert support         | [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github) |
+| Spread ~♡ⓛⓞⓥⓔ♡~      |  [🌏](https://about.me/peter.boling), [👼](https://angel.co/peter-boling), [![Tweet Peter](https://img.shields.io/twitter/follow/galtzo.svg?style=social&label=Follow)](http://twitter.com/galtzo) |
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'anonymous_active_record'
+gem "anonymous_active_record"
 ```
 
 And then execute:
@@ -46,7 +97,7 @@ This gem is compatible with, as of Feb 2021:
 Require the library in your `spec_helper` or other test suite boot file.
 
 ```ruby
-require 'anonymous_active_record'
+require "anonymous_active_record"
 ```
 
 Let's say you want to write specs for a module, `HasBalloon`, which provides a method `has_balloon?`, and will be mixed into ActiveRecord classes.
@@ -54,7 +105,7 @@ Let's say you want to write specs for a module, `HasBalloon`, which provides a m
 ```ruby
 module HasBalloon
   def has_balloon?
-    name == 'Spot' # only Spot has a balloon
+    name == "Spot" # only Spot has a balloon
   end
 end
 ```
@@ -71,7 +122,7 @@ let(:ar_with_balloon) do
       "#{b_f}#{name}#{b_f}"
     end
     def b_f
-      has_balloon? ? '🎈' : '🌸'
+      has_balloon? ? "🎈" : "🌸"
     end
   end
 end
@@ -81,19 +132,19 @@ So do this instead:
 
 ```ruby
 let(:ar_with_balloon) do
-  AnonymousActiveRecord.generate(columns: ['name']) do
+  AnonymousActiveRecord.generate(columns: ["name"]) do
     include HasBalloon
     def flowery_name
       "#{b_f}#{name}#{b_f}"
     end
     def b_f
-      has_balloon? ? '🎈' : '🌸'
+      has_balloon? ? "🎈" : "🌸"
     end
   end
 end
-it 'can test the module' do
-  expect(ar_with_balloon.new(name: 'Spot').flowery_name).to eq('🎈Spot🎈')
-  expect(ar_with_balloon.new(name: 'Not Spot').flowery_name).to eq('🌸Not Spot🌸')
+it "can test the module" do
+  expect(ar_with_balloon.new(name: "Spot").flowery_name).to(eq("🎈Spot🎈"))
+  expect(ar_with_balloon.new(name: "Not Spot").flowery_name).to(eq("🌸Not Spot🌸"))
 end
 ```
 
@@ -101,23 +152,23 @@ end
 
 ```ruby
 AnonymousActiveRecord.generate(
-  table_name: 'a_table_name',
+  table_name: "a_table_name",
       # if table_name is not set klass_basename will be used to derive a unique random table_name
       # default is a unique random table name
-  klass_basename: 'anons', # is default
-  columns: ['name'],
+  klass_basename: "anons", # is default
+  columns: ["name"],
       # columns default is [],
       # meaning class will have ['id', 'created_at', 'updated_at'], as the AR defaults
       # Optionally provide an array of hashes and thereby designate column type:
       # [{name: 'name', type: 'string'}, {name: 'baked_at', type: 'time'}]
   timestamps: true, # is default
-  indexes: [{ columns: ['name'], unique: true }],
+  indexes: [{columns: ["name"], unique: true}],
       # indexes default is [],
       # meaning class will have no indexes, as the AR defaults
       # Optionally provide an array of hashes of index options (similar to those used in Rails migrations):
       # [{columns: ['name'], unique: true}, {columns: ['baked_at']}]
-  connection_params: { adapter: 'sqlite3', encoding: 'utf8', database: ':memory:' } # is default
-  ) do
+  connection_params: {adapter: "sqlite3", encoding: "utf8", database: ":memory:"}, # is default
+) do
    # code which becomes part of the class definition
 end
 ```
@@ -128,10 +179,10 @@ The block is optional.
 
 ```ruby
 AnonymousActiveRecord.factory(
-  source_data: [{ name: 'Phil' }, { name: 'Vickie' }]
+  source_data: [{name: "Phil"}, {name: "Vickie"}],
         # Array of hashes, where each hash represents a record that will be created
     # ... The rest of the options are the same as for generate, see above.
-  ) do
+) do
   # same as for generate, see above.
 end
 ```
@@ -169,7 +220,7 @@ dependency on this gem using the [Pessimistic Version Constraint][pvc] with two 
 For example:
 
 ```ruby
-spec.add_dependency 'anonymous_active_record', '~> 0.0'
+spec.add_dependency("anonymous_active_record", "~> 0.0")
 ```
 
 ## License
