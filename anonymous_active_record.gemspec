@@ -27,9 +27,10 @@ Gem::Specification.new do |spec|
     "lib/**/*",
     # Files (alphabetical)
     "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
     "LICENSE.txt",
     "README.md",
-    "CODE_OF_CONDUCT.md"
+    "SECURITY.md"
   ]
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
