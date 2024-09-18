@@ -1,6 +1,6 @@
 {
-  "anonymous_active_record.gemspec:3364240223": [
-    [70, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 3819206526]
+  "anonymous_active_record.gemspec:3519669904": [
+    [71, 3, 48, "Gemspec/DependencyVersion: Dependency version specification is required.", 3819206526]
   ],
   "lib/anonymous_active_record/generator.rb:2931541877": [
     [38, 7, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787]
