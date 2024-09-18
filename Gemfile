@@ -7,18 +7,18 @@ source "https://rubygems.org"
 gemspec
 
 ### deps for rdoc.info
-group :documentation do
-  gem "github-markup", platform: :mri
-  gem "redcarpet", platform: :mri
-end
+# group :documentation do
+#   gem "github-markup", platform: :mri
+#   gem "redcarpet", platform: :mri
+# end
 
 group :development, :test do
   gem "byebug", platform: :mri
-  gem "growl"
-  gem "guard"
-  gem "guard-bundler"
-  gem "guard-rspec"
-  gem "pry", platform: :mri
-  gem "pry-byebug", platform: :mri
-  gem "rb-fsevent"
+  # gem "growl"
+  # gem "guard"
+  # gem "guard-bundler"
+  # gem "guard-rspec"
+  # gem "pry", platform: :mri
+  # gem "pry-byebug", platform: :mri
+  # gem "rb-fsevent"
 end

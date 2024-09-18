@@ -3,6 +3,7 @@
 # external gems
 require "version_gem"
 require "active_record"
+require "active_support/core_ext/array/extract_options"
 
 require "anonymous_active_record/version"
 require "anonymous_active_record/generator"

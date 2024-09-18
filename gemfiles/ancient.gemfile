@@ -10,6 +10,7 @@ source "https://rubygems.org"
 #   because they target Ruby 2.7+
 # Thus we load the runtime dependencies of the gem here.
 gem "activerecord", ">= 5"
+gem "activesupport", ">= 5"
 gem "version_gem", "~> 1.1", ">= 1.1.4"
 
 gem "sqlite3", "~> 1"

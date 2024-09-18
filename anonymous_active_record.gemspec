@@ -36,6 +36,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency("activerecord", ">= 5")
+  spec.add_dependency("activesupport", ">= 5")
   spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.4")
 
   # Documentation
