@@ -18,10 +18,21 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Almost Anonymous ActiveRecord classes"
   spec.description = "Replacement for broken Class.new(ActiveRecord::Base)"
-  spec.homepage = "https://github.com/pboling/anonymous_active_record"
+  spec.homepage = "http://github.com/pboling/#{spec.name}"
+
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.4" # Requirement for Ruby String#capitalize
 
+  spec.metadata["homepage_uri"] = "https://railsbling.com/tags/gem_bench/"
+  spec.metadata["source_code_uri"] = "#{spec.homepage}/tree/v#{spec.version}"
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/v#{spec.version}/CHANGELOG.md"
+  spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
+  spec.metadata["documentation_uri"] = "https://www.rubydoc.info/gems/#{spec.name}/#{spec.version}"
+  spec.metadata["wiki_uri"] = "#{spec.homepage}/wiki"
+  spec.metadata["funding_uri"] = "https://liberapay.com/pboling"
+  spec.metadata["rubygems_mfa_required"] = "true"
+
+  # Specify which files should be added to the gem when it is released.
   spec.files = Dir[
     # Splats (alphabetical)
     "lib/**/*",
