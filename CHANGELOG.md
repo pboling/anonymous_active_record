@@ -31,7 +31,6 @@ BRANCH COVERAGE:  94.44% -- 17/18 branches in 4 files
   - truffleruby-head
 - Improved Documentation
 - `kettle-soup-cover` for test coverage enforcement
-- `kettle-soup-cover` for test coverage enforcement
 - `bin/checksums` for release checksums
 - Checksums for release
     - SHA-256
